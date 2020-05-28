@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "title": "Сходить в магазин",
+      "text": "Добавьте описание",
+      "completed": true,
+      "common": false,
+      "rare": false,
+      "data": "2020-05-27T14:06:03.627Z",
+      "immortal": false,
+      "wasted": false,
+      "completedDate": "2020-05-28T00:12:59.917Z",
+      "id": 1
+    },
+    {
+      "title": "Учить Eng",
+      "text": "Добавьте описание",
+      "completed": true,
+      "common": false,
+      "rare": true,
+      "data": "2020-05-27T11:06:03.627Z",
+      "immortal": false,
+      "wasted": false,
+      "clock": false,
+      "completedDate": "2020-05-27T20:51:52.676Z",
+      "id": 2
+    },
+    {
+      "title": "Убраться дома",
+      "text": "Добавьте описание",
+      "completed": false,
+      "common": false,
+      "rare": false,
+      "data": "2020-05-27T11:16:03.627Z",
+      "immortal": true,
+      "wasted": true,
+      "completedDate": "2020-05-27T23:33:12.259Z",
+      "id": 3
+    },
+    {
+      "title": "Post1",
+      "text": "Добавте описание",
+      "completed": true,
+      "common": true,
+      "rare": false,
+      "data": "2020-05-27T23:57:14.882Z",
+      "immortal": false,
+      "wasted": false,
+      "datanone": false,
+      "completedDate": "2020-05-27T23:57:20.902Z",
+      "id": 4
+    }
+  ]
+}
