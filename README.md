@@ -3,7 +3,7 @@
 
 git clone </br>
 npm i</br>
-ЗАПУСТИТЬ ТРИ ТЕРМИНАЛ:</br>
+ЗАПУСТИТЬ ТРИ ТЕРМИНАЛА:</br>
 в 1 терминал прписать : react-native start</br>
 в 2 терминал прписать :json-server -w db.json</br>
 в 3 терминал прписать :npm run tunnel</br>
