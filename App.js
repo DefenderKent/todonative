@@ -28,7 +28,7 @@ import {ImmortalScreen} from './src/screens/ImmortalScreen';
 // 1-я команда: json-server -w db.json
 // 2-я команда: npm run tunnel
 // после второй команды из терминала нужно взять ссылку на против "Forwarding"
-export const baseUrl = `http://17137858.ngrok.io`;
+export const baseUrl = `http://4f4ebfde30e7.ngrok.io`;
 
 const Stack = createStackNavigator();
 export default class App extends Component {
