@@ -3,13 +3,17 @@ import {StyleSheet, View, FlatList, Text, Image, AppText} from 'react-native';
 
 import {AddTodoItems} from '../components/AddTodoItems';
 import {TodoContext} from '../context/todo/todoContext';
-import {ScreenContext} from '../context/screen/screenContext';
+
 import {AppLoader} from '../components/ui/AppLoader';
 
 export const RareScreen = ({navigation}) => {
   const {todos, deleteItem, setTodos, loading, error} = useContext(TodoContext);
-  const {changeScreen} = useContext(ScreenContext);
 
+  const goToTodo = item => {
+    navigation.navigate('TodoScreen', {
+      item,
+    });
+  };
   const loadTodo = useCallback(async () => await setTodos(), [setTodos]);
   useEffect(() => {
     loadTodo();
@@ -35,7 +39,7 @@ export const RareScreen = ({navigation}) => {
           <AddTodoItems
             item={item}
             onRemove={deleteItem}
-            onOpen={changeScreen}
+            onOpen={goToTodo}
             navigation={navigation}
           />
         );

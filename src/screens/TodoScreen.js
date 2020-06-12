@@ -14,13 +14,12 @@ import {AppCard} from '../components/ui/AppCard';
 import {AppPopup} from '../components/AppPopup';
 import {TodoContext} from '../context/todo/todoContext';
 
-import {ScreenContext} from '../context/screen/screenContext';
-export const TodoScreen = ({navigation}) => {
-  const {todos, updateTodo, deleteItem, completedTodo} = useContext(
+export const TodoScreen = ({navigation, route}) => {
+  const {todos, updateTodo, deleteItem, completedTodo, setTodos} = useContext(
     TodoContext,
   );
-  const {todoId, changeScreen} = useContext(ScreenContext);
-  const item = todos.find(t => t.id === todoId);
+
+  const item = route.params.item;
   const [modal, setModal] = useState(false);
   const timeAdd = new Date(item.data).toLocaleString();
   const timeAddComplited = new Date(item.completedDate).toLocaleString();
@@ -39,6 +38,7 @@ export const TodoScreen = ({navigation}) => {
       item.datanone,
       item.completedDate,
     );
+    setTodos();
     setModal(false);
   };
   const saveComplited = () => {
@@ -58,8 +58,10 @@ export const TodoScreen = ({navigation}) => {
         item.datanone,
         item.completedDate,
       );
+      setTodos();
     }
   };
+
   return (
     <View>
       <AppPopup
@@ -143,7 +145,7 @@ export const TodoScreen = ({navigation}) => {
 
       <View style={styles.buttons}>
         <View style={styles.buttonstyle}>
-          <Button title="назад" onPress={() => changeScreen(null)} />
+          <Button title="назад" onPress={() => navigation.goBack()} />
         </View>
         <View style={styles.buttonstyle}>
           <Icon.Button

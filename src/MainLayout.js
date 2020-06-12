@@ -2,21 +2,12 @@ import React, {useContext} from 'react';
 import {StyleSheet, View, Alert, Button} from 'react-native';
 import {Navbar} from './components/Navbar';
 import {MainScreen} from './screens/MainScreen';
-import {TodoScreen} from './screens/TodoScreen';
-import {ScreenContext} from './context/screen/screenContext';
-import {NavigationContainer} from '@react-navigation/native';
 
 export const MainLayout = ({navigation}) => {
-  const {todoId} = useContext(ScreenContext);
   return (
     <View style={styles.inner}>
-      <Navbar />
       <View style={styles.container}>
-        {todoId ? (
-          <TodoScreen navigation={navigation} />
-        ) : (
-          <MainScreen navigation={navigation} />
-        )}
+        <MainScreen navigation={navigation} />
       </View>
       <View style={styles.blockbtn}>
         <View style={styles.allbtn}>

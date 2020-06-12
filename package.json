@@ -8,8 +8,9 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "db": "json-server -w db.json",
-    "tunnel": "ngrok http 3000"
+    "startapp": "npm-run-all \"tunnel\" \"json-server\"",
+    "json-server": "json-server -w db.json --port 3001",
+    "tunnel": "ngrok http 3001"
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.4.1",
@@ -31,7 +32,8 @@
     "react-native-vector-icons": "^6.6.0",
     "react-navigation-stack": "^2.5.1",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",

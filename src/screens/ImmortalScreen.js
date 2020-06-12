@@ -1,15 +1,19 @@
 import React, {useContext, useEffect, useCallback} from 'react';
 import {StyleSheet, View, FlatList, Text, Image, AppText} from 'react-native';
-import {AddTodo} from '../components/AddTodo';
+
 import {AddTodoItems} from '../components/AddTodoItems';
 import {TodoContext} from '../context/todo/todoContext';
-import {ScreenContext} from '../context/screen/screenContext';
+
 import {AppLoader} from '../components/ui/AppLoader';
 
 export const ImmortalScreen = ({navigation}) => {
   const {todos, deleteItem, setTodos, loading, error} = useContext(TodoContext);
-  const {changeScreen} = useContext(ScreenContext);
 
+  const goToTodo = item => {
+    navigation.navigate('TodoScreen', {
+      item,
+    });
+  };
   const loadTodo = useCallback(async () => await setTodos(), [setTodos]);
   useEffect(() => {
     loadTodo();
@@ -35,7 +39,7 @@ export const ImmortalScreen = ({navigation}) => {
           <AddTodoItems
             item={item}
             onRemove={deleteItem}
-            onOpen={changeScreen}
+            onOpen={goToTodo}
             navigation={navigation}
           />
         );

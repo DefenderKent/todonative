@@ -1,17 +1,30 @@
 import React, {useContext, useEffect, useCallback} from 'react';
-import {StyleSheet, View, FlatList, Text, Image, AppText} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Text,
+  Image,
+  AppText,
+  TouchableOpacity,
+} from 'react-native';
 import {AddTodo} from '../components/AddTodo';
 import {AddTodoItem} from '../components/AddTodoItem';
 import {TodoContext} from '../context/todo/todoContext';
-import {ScreenContext} from '../context/screen/screenContext';
+
 import {AppLoader} from '../components/ui/AppLoader';
 
-export const MainScreen = () => {
+export const MainScreen = ({navigation}) => {
   const {addTodo, todos, deleteItem, setTodos, loading, error} = useContext(
     TodoContext,
   );
-  const {changeScreen} = useContext(ScreenContext);
-
+  const goToTodo = item => {
+    navigation.navigate('TodoScreen', {
+      todoId: item.id,
+      subtitle: item.title,
+      item,
+    });
+  };
   const loadTodo = useCallback(async () => await setTodos(), [setTodos]);
   useEffect(() => {
     loadTodo();
@@ -33,11 +46,14 @@ export const MainScreen = () => {
       data={todos}
       renderItem={({item}) => {
         return (
-          <AddTodoItem
-            item={item}
-            onRemove={deleteItem}
-            onOpen={changeScreen}
-          />
+          <>
+            <AddTodoItem
+              item={item}
+              onRemove={deleteItem}
+              navigation={navigation}
+              onOpen={goToTodo}
+            />
+          </>
         );
       }}
     />
