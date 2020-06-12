@@ -2,12 +2,16 @@ import React, {useContext, useEffect, useCallback} from 'react';
 import {StyleSheet, View, FlatList, Text, Image, AppText} from 'react-native';
 import {AddTodoItems} from '../components/AddTodoItems';
 import {TodoContext} from '../context/todo/todoContext';
-import {ScreenContext} from '../context/screen/screenContext';
+
 import {AppLoader} from '../components/ui/AppLoader';
 
-export const CommonScreen = ({navigation}) => {
+export const CommonScreen = ({navigation, route}) => {
   const {todos, deleteItem, setTodos, loading, error} = useContext(TodoContext);
-  const {changeScreen} = useContext(ScreenContext);
+  const goToTodo = item => {
+    navigation.navigate('TodoScreen', {
+      item,
+    });
+  };
 
   const loadTodo = useCallback(async () => await setTodos(), [setTodos]);
   useEffect(() => {
@@ -29,12 +33,11 @@ export const CommonScreen = ({navigation}) => {
       keyExtractor={keys => keys.id.toString()}
       data={todos.filter(post => post.common)}
       renderItem={({item}) => {
-        console.log('ЧТО-', item);
         return (
           <AddTodoItems
             item={item}
             onRemove={deleteItem}
-            onOpen={changeScreen}
+            onOpen={goToTodo}
             navigation={navigation}
           />
         );

@@ -6,8 +6,7 @@ export const AddTodoItems = ({item, onRemove, onOpen, navigation}) => {
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={() => {
-        onOpen(item.id);
-        navigation.goBack();
+        onOpen(item);
       }}
       onLongPress={() => {
         onRemove(item.id);

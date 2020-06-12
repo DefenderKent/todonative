@@ -14,7 +14,6 @@ import {
   INITIALAZED_SUCCESS,
   COMPLETED_TODO,
 } from './todoReducer';
-import {ScreenContext} from '../screen/screenContext';
 
 export const TodoState = ({children}) => {
   const initialState = {
@@ -23,7 +22,7 @@ export const TodoState = ({children}) => {
     error: null,
   };
   // let basrUrl = `http://17137858.ngrok.io`;
-  const {changeScreen} = useContext(ScreenContext);
+
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const addTodo = async (title, common, rare, immortal, datanone) => {
     showLoader();
@@ -83,7 +82,6 @@ export const TodoState = ({children}) => {
         {
           text: 'Удалить',
           onPress: async () => {
-            changeScreen(null);
             await fetch(`${baseUrl}/posts/${id}`, {
               method: 'DELETE',
               headers: {'Content-Type': 'application/json'},
@@ -155,7 +153,7 @@ export const TodoState = ({children}) => {
       showError('Ошибка');
       console.log(e);
     } finally {
-      setTodos();
+      await setTodos();
     }
   };
   const completedTodo = async (
@@ -206,7 +204,7 @@ export const TodoState = ({children}) => {
       showError('Ошибка');
       console.log(e);
     } finally {
-      setTodos();
+      await setTodos();
     }
   };
   const initializedSuccess = () => ({
